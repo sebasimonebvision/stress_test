@@ -18,16 +18,21 @@ end
 
 def startBrowser
 @browser = Watir::Browser.new :firefox
-@log.info(@baseurl)
-@browser.goto @baseURL
 end  
 
-def doLogin (user)
-
+def doAdminLogin
+@browser.goto @baseURL
+@browser.text_field(:id => 'username').set(@config['adminUsername'])
+@browser.text_field(:id => 'pwd').set(@config['adminPassword'])
+@browser.link(:text => 'Log In').click
 end
 
+def createNewUser
+  
+end
 getURL
 startBrowser
+doAdminLogin 
 
 =begin
 tracker1 = Thread.new do
