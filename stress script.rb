@@ -7,8 +7,13 @@ log.level = Logger::INFO
 log.info('started logging')
 sleep 2
 
-url = YAML::load( File.read('connection.yaml') 
+#def getURL
+config = YAML.load_file('config.yml')
+baseURL = config['baseURL']
+log.info(baseURL) 
+#end
 
+#getURL()
   
 
 =begin

@@ -1,0 +1,4 @@
+# Logfile created on 2014-08-11 21:48:37 -0300 by logger.rb/31641
+I, [2014-08-11T21:48:37.248307 #18059]  INFO -- : started logging
+I, [2014-08-11T21:48:57.592095 #18088]  INFO -- : started logging
+I, [2014-08-11T21:48:59.595793 #18088]  INFO -- : nil

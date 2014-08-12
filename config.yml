@@ -1,6 +1,23 @@
-Url:
+url:
   baseURL: http://localhost:8080/sf/main/do/home
-Intervals:
+credentials:
+  adminUsername: admin
+  adminPassword: admin
+  user1Username: user1
+  allUserPassword: password
+  user2Username: user2
+  user3Username: user3
+  user4Username: user4
+  user5Username: user5
+  user6Username: user6
+  user7Username: user7
+  user8Username: user8
+  user9Username: user9
+  user10Username: user10
+  user11Username: user11
+  user12Username: user12
+  user13Username: user13
+intervals:
   newUserInterval: 3600
   artifactCreationInterval: 5
  
