@@ -1,5 +1,9 @@
 require 'logger'
 require 'yaml'
+require 'watir-webdriver'
+require 'rubygems'
+
+
 
 
 @log = Logger.new('activity.log')
@@ -8,12 +12,22 @@ require 'yaml'
 sleep 2
 
 def getURL
-config = YAML.load_file('config.yml')
-baseURL = config['baseURL']
+@config = YAML.load_file('config.yml')
+@baseURL = @config['baseURL']
+end
+
+def startBrowser
+@browser = Watir::Browser.new :firefox
+@log.info(@baseurl)
+@browser.goto @baseURL
+end  
+
+def doLogin (user)
 
 end
-  
+
 getURL
+startBrowser
 
 =begin
 tracker1 = Thread.new do

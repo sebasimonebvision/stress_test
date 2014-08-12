@@ -1,5 +1,5 @@
 url:
-baseURL: http://localhost:8080/sf/main/do/home
+baseURL: http://localhost:8080/sf/
 credentials:
 adminUsername: admin
 adminPassword: admin

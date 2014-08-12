@@ -1,3 +1,7 @@
-# Logfile created on 2014-08-12 00:42:11 -0300 by logger.rb/31641
-I, [2014-08-12T00:42:11.845584 #7571]  INFO -- : started logging
-I, [2014-08-12T00:42:13.848998 #7571]  INFO -- : http://localhost:8080/sf/main/do/home
+# Logfile created on 2014-08-12 12:30:06 -0300 by logger.rb/31641
+I, [2014-08-12T12:30:06.030694 #31639]  INFO -- : started logging
+I, [2014-08-12T12:30:12.956043 #31639]  INFO -- : nil
+I, [2014-08-12T12:31:03.488951 #31763]  INFO -- : started logging
+I, [2014-08-12T12:31:09.865515 #31763]  INFO -- : nil
+I, [2014-08-12T12:32:28.032083 #31895]  INFO -- : started logging
+I, [2014-08-12T12:32:36.001569 #31895]  INFO -- : nil
