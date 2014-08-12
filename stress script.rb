@@ -2,19 +2,18 @@ require 'logger'
 require 'yaml'
 
 
-log = Logger.new('activity.log')
-log.level = Logger::INFO
-log.info('started logging')
+@log = Logger.new('activity.log')
+@log.level = Logger::INFO
+@log.info('started logging')
 sleep 2
 
-#def getURL
+def getURL
 config = YAML.load_file('config.yml')
 baseURL = config['baseURL']
-log.info(baseURL) 
-#end
 
-#getURL()
+end
   
+getURL
 
 =begin
 tracker1 = Thread.new do

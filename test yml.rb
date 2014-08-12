@@ -1,5 +1,5 @@
 require 'yaml'
 
-url =YAML.load_file('connection.yml')
+url =YAML.load_file('config.yml')
 puts url['baseURL']
 
