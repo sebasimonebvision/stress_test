@@ -1,0 +1,6 @@
+Url:
+  baseURL: http://localhost:8080/sf/main/do/home
+Intervals:
+  newUserInterval: 3600
+  artifactCreationInterval: 5
+ 
