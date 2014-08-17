@@ -1,7 +1,7 @@
 url:
-baseURL: http://localhost:8080/sf/
+baseURL: http://localhost:8080/sf
 credentials:
-adminUsername: admin
+adminUsername: admin 
 adminPassword: admin
 user1Username: user1
 allUserPassword: password
