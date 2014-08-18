@@ -3,6 +3,7 @@ require 'yaml'
 require 'watir-webdriver'
 require 'rubygems'
 require 'faker'
+require 'securerandom'
 
 @log = Logger.new('activity.log')
 @log.level = Logger::INFO
@@ -25,7 +26,7 @@ doLogin(@config['adminUsername'],@config['adminPassword'])
 @browser.link(:href => '/sf/sfmain/do/listProjectsAdmin').when_present.click  
 @browser.goto 'http://localhost:8080/sf/sfmain/do/listUsersAdmin'
 for i in 1..50
-usr = (Faker::Lorem::word)
+usr = (Faker::Lorem::word) #Todo: Replace with word + SecureRandom number 
 pwd = (Faker::Internet::password)  
 @browser.link(:id => 'allUsers_create').when_present.click
 @browser.text_field(:id => 'UsernameField').when_present.set(usr) 
@@ -43,8 +44,15 @@ end
 
 def submitArtifact
 doLogin(@users.sample,@config['allUserPassword'])
-@browser.link(:href => 'href="/sf/sfmain/do/myPage').when_present.click
-@browser.link(:href => 'href="/sf/sfmain/do/myProjects').when_present.click
+#@browser.link(:href => 'href="/sf/sfmain/do/myPage').when_present.click
+@browser.link(:href => '/sf/sfmain/do/myProjects').when_present.click
+@browser.link(:href => '/sf/projects/test_project').when_present.click #to_do: Create method for auto_project and pass project name as this method parameter.
+@browser.link(:href => '/sf/tracker/do/listTrackers/projects.test_project/tracker').when_present.click
+@browser.link(:href => '/sf/tracker/do/listArtifacts/projects.test_project/tracker.test_tracker').when_present.click 
+@browser.link(:href => '/sf/tracker/do/createArtifact/projects.test_project/tracker.test_tracker').when_present.click
+@browser.text_field(:id => 'title').when_present.set(Faker::Lorem::sentence)
+@browser.text_field(:id => 'description').when_present.set(Faker::Lorem::paragraph)
+@browser.link(:text => 'Save').when_present.click
 end
 
 
