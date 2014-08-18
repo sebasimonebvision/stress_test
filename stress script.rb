@@ -42,11 +42,15 @@ end
 
 end
 
-def submitArtifact
-doLogin(@users.sample,@config['allUserPassword'])
-#@browser.link(:href => 'href="/sf/sfmain/do/myPage').when_present.click
+def reachToProject
 @browser.link(:href => '/sf/sfmain/do/myProjects').when_present.click
 @browser.link(:href => '/sf/projects/test_project').when_present.click #to_do: Create method for auto_project and pass project name as this method parameter.
+end
+
+def submitArtifact
+doLogin(@users.sample,@config['allUserPassword'])
+reachToProject
+#@browser.link(:href => 'href="/sf/sfmain/do/myPage').when_present.click
 @browser.link(:href => '/sf/tracker/do/listTrackers/projects.test_project/tracker').when_present.click
 @browser.link(:href => '/sf/tracker/do/listArtifacts/projects.test_project/tracker.test_tracker').when_present.click 
 @browser.link(:href => '/sf/tracker/do/createArtifact/projects.test_project/tracker.test_tracker').when_present.click
@@ -55,8 +59,28 @@ doLogin(@users.sample,@config['allUserPassword'])
 @browser.link(:text => 'Save').when_present.click
 end
 
+def touchDiscussion
+doLogin(@users.sample,@config['allUserPassword'])
+reachToProject
+@browser.link(:href => '/sf/discussion/do/listForums/projects.test_project/discussion').when_present.click
+@browser.link(:href => '/sf/discussion/do/listTopics/projects.test_project/discussion.test_forum').when_present.click
+@browser.link(:text => 'Create').when_present.click
+@browser.text_field(:id => 'title').when_present.set(Faker::Lorem::sentence)
+@browser.text_field(:id => 'content').when_present.set(Faker::Lorem::paragraph)
+@browser.link(:text => 'Save').when_present.click 
+end
 
-submitArtifact 
+def touchWiki
+doLogin(@users.sample,@config['allUserPassword'])
+reachToProject 
+@browser.link(:href => '/sf/wiki/do/viewPage/projects.test_project/wiki/HomePage').when_present.click
+@browser.link(:text => 'Edit').when_present.click 
+@browser.text_field(:id => 'editorarea').set(Faker::Lorem::paragraph)
+@browser.link(:text => 'Update').when_present.click
+end
+
+
+touchWiki
 
 =begin
 getURL
