@@ -3,13 +3,7 @@ baseURL: http://localhost:8080/sf
 credentials:
 adminUsername: admin 
 adminPassword: admin
-user1Username: user1
-user2Username: user2
-user3Username: user3
-user4Username: user4
-user5Username: user5
 allUserPassword: password
-
 
 intervals:
 newUserInterval: 5
