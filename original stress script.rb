@@ -12,7 +12,10 @@ require 'securerandom'
 @users = ['user1','user2','user3','user4','user5']
 
 def doLogin(usr,pwd)
-@browser = Watir::Browser.new :firefox
+profile = Selenium::WebDriver::Firefox::Profile.new
+profile['browser.privatebrowsing.dont_prompt_on_enter'] = true
+profile['browser.privatebrowsing.autostart'] = true
+@browser = Watir::Browser.new :firefox, :profile => profile
 @browser.goto (@config['baseURL'])
 @browser.text_field(:id =>'username').when_present.set(usr)
 @browser.text_field(:id => 'pwd').when_present.set(pwd)
@@ -25,10 +28,8 @@ def reachToProject
 end
 
 def createNewUser
-doLogin(@config['adminUsername'],@config['adminPassword'])
 @browser.link(:href => '/sf/sfmain/do/listProjectsAdmin').when_present.click  
 @browser.goto 'http://localhost:8080/sf/sfmain/do/listUsersAdmin'
-
 for i in 1..50
         usr = (Faker::Lorem::word) + SecureRandom::random_number(4).to_s 
         pwd = (Faker::Internet::password)  
@@ -74,31 +75,33 @@ def touchWiki
 @browser.link(:text => 'Update').when_present.click
 end
  
-createNewUser
-
 
  tracker1 = Thread.new do 
-    doLogin(@users.sample,@config['allUserPassword'])
+    doLogin('user1',@config['allUserPassword'])
     reachToProject 
     loop do
     availableActions = [touchWiki,touchDiscussion,submitArtifact]
     availableActions.sample
+    end
   end
   
  tracker2 = Thread.new do 
-    doLogin(@users.sample,@config['allUserPassword'])
+    doLogin('user2',@config['allUserPassword'])
     reachToProject
     loop do
     availableActions = [touchWiki,touchDiscussion,submitArtifact]
     availableActions.sample
+    end
   end
   
+=begin
   tracker3 = Thread.new do 
-    doLogin(@users.sample,@config['allUserPassword'])
+    doLogin('user3',@config['allUserPassword'])
     reachToProject
     loop do 
     availableActions = [touchWiki,touchDiscussion,submitArtifact]
     availableActions.sample
+    end
   end
   
   tracker4 = Thread.new do 
@@ -125,17 +128,15 @@ createNewUser
     loop do
       createNewUser
     end
-    
   end
+=end
+
+    
+  
     
 tracker1.join
 tracker2.join
-tracker3.join
-tracker4.join
-tracker5.join
-admin1.join
+#admin1.join
 
-end 
-
-  
+ 
 

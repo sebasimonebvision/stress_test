@@ -1,0 +1,10 @@
+url:
+baseURL: http://localhost:8080/sf
+credentials:
+adminUsername: admin 
+adminPassword: admin
+allUserPassword: password
+
+intervals:
+newUserInterval: 5
+artifactCreationInterval: 5
